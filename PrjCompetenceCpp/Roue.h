@@ -12,20 +12,6 @@ class Roue
 private:
 	int numeruo_serie;
 	string marque;
-
-	// Getter et setter
-	void setNumeruo_serie(int numeruo_serie) {
-		this->numeruo_serie = numeruo_serie;
-	}
-	void setMarque(string marque) {
-		this->marque = marque;
-	}
-	int getNumeruo_serie() {
-		return this->numeruo_serie;
-	}
-	string getMarque() {
-		return this->marque;
-	}
 public : 
 	// Valeur de base
 	int largeur;
@@ -47,6 +33,19 @@ public :
 	}
 	~Roue() {
 
+	}
+	// Getter et setter
+	void setNumeruo_serie(int numeruo_serie) {
+		this->numeruo_serie = numeruo_serie;
+	}
+	void setMarque(string marque) {
+		this->marque = marque;
+	}
+	int getNumeruo_serie() {
+		return this->numeruo_serie;
+	}
+	string getMarque() {
+		return this->marque;
 	}
 };
 
