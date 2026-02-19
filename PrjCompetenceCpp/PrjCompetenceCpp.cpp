@@ -1,16 +1,21 @@
-// PrjCompetenceCpp.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
-
 #include <iostream>
 #include "Voiture.h"
 #include "vector"
 
 using namespace std;
 
+/*
+* Déclaration de fonction 
+*/
+
+void afficherVoiture(vector<Voiture>& voitures); // Affichage des voitures et de leurs roues
+
 int main()
 {
 	vector<Voiture> voitures; 
-	
+	string wait;
+
+
 	do {
 		Voiture tempVoiture;
 
@@ -18,7 +23,7 @@ int main()
 		string marque;
 		
 		// Numero série voiture
-		cout << "Entrez le numero de serie de la voiture (0 pour terminer) : ";
+		cout << "Entrez le numero de serie de la voiture : ";
 		cin >> inter_int;
 		tempVoiture.setNumero_serie(inter_int);
 
@@ -42,8 +47,10 @@ int main()
 			cin >> tempVoiture.roues[x].hauteur;
 			cout << "Radial : ";
 			cin >> tempVoiture.roues[x].radial;
-			cout << "Diametre : ";
-			cin >> tempVoiture.roues[x].diametre; // Dans le future, le calculer dans une methode de la classe roue
+			
+			tempVoiture.roues[x].calculDiametre(); // Calcul du diametre de la roue
+			cout << "Diametre : " << tempVoiture.roues[x].diametre << endl;
+
 			cout << "Indice de charge : ";
 			cin >> tempVoiture.roues[x].indice_charge;
 			cout << "Indice de vitesse : ";
@@ -56,13 +63,39 @@ int main()
 		catch (const exception& e) {
 			cerr << "Erreur lors de l'ajout de la voiture : " << e.what() << endl;
 		} 
-
+		cout << "Nombre de voitures : " << voitures.size() << endl;
+		cout << "Nombre de roues : " << voitures[0].roues.size() << endl;
 		cout << "Voulez-vous ajouter une autre voiture ? (O/N) : ";
 		cin >> marque;
 		if (marque != "O" && marque != "o") {
 			break;
 		}
+
 	} while (true);
 
+	
+	afficherVoiture(voitures); // Affichage des voitures et de leurs roues
+	cin >> wait;
+
 	return 0;
+}
+
+void afficherVoiture(vector<Voiture>& voitures) {
+	for (int x = 0; x < voitures.size(); x++) {
+		cout << "Voiture numero " << x + 1 << " : " << endl;
+		cout << "Numero de serie : " << voitures[x].getNumero_serie() << endl;
+		cout << "Marque : " << voitures[x].getMarque() << endl;
+		for (int y = 0; y < voitures[x].roues.size(); y++) {
+			cout << "Roues numero " << y + 1 << " : " << endl;
+			cout << "Numero de serie : " << voitures[x].roues[y].getNumeruo_serie() << endl;
+			cout << "Marque : " << voitures[x].roues[y].getMarque() << endl;
+			cout << "Largeur : " << voitures[x].roues[y].largeur << endl;
+			cout << "Hauteur : " << voitures[x].roues[y].hauteur << endl;
+			cout << "Radial : " << voitures[x].roues[y].radial << endl;
+			cout << "Diametre : " << voitures[x].roues[y].diametre << endl;
+			cout << "Indice de charge : " << voitures[x].roues[y].indice_charge << endl;
+			cout << "Indice de vitesse : " << voitures[x].roues[y].indice_vitesse << endl;
+		}
+
+	}
 }

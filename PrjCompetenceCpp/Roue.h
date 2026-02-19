@@ -13,7 +13,9 @@ private:
 	int numeruo_serie;
 	string marque;
 public : 
-	// Valeur de base
+	/*
+	* Informations de la roue
+	*/
 	int largeur;
 	int hauteur;
 	int radial;
@@ -21,7 +23,10 @@ public :
 	int indice_charge;
 	int indice_vitesse;
 
-	Roue() { // Informations de base pour une roue 
+	/*
+	* Constructeur et destructeur
+	*/
+	Roue() { 
 		this->largeur = 0;
 		this->hauteur = 0;
 		this->radial = 0;
@@ -34,7 +39,16 @@ public :
 	~Roue() {
 
 	}
-	// Getter et setter
+	/*
+	* Cette méthode vas permettre de calculer le diametre de la roue en fonction de sa hauteur, largeur et de son radial
+	*/
+	void calculDiametre() { // Calcul du diametre de la roue
+		this->diametre = (this->hauteur * 2) + (this->largeur * this->radial / 100);
+	}
+
+	/*
+	* Getter et setter
+	*/
 	void setNumeruo_serie(int numeruo_serie) {
 		this->numeruo_serie = numeruo_serie;
 	}
