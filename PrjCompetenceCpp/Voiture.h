@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Roue.h"
+#include "Moteur.h"
 #include <vector>
 using namespace std;
 
@@ -19,6 +20,7 @@ private:
 		}
 	}
 public :
+	Moteur moteur; // Une voiture a un moteur
 	vector<Roue> roues; // Une voiture peut avoir plusieurs roues (MAX/MIN 4)
 	Voiture() { // Informations de base pour une voiture, avec 4 roues de base
 		this->numero_serie = 0;
@@ -28,6 +30,7 @@ public :
 	Voiture(const Voiture& voiture) {
 		this->numero_serie = voiture.numero_serie;
 		this->marque = voiture.marque;
+		this->moteur = voiture.moteur;
 		this->roues = voiture.roues;
 	}
 	~Voiture() {

@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Moteur.cpp" />
     <ClCompile Include="PrjCompetenceCpp.cpp" />
     <ClCompile Include="Roue.cpp" />
     <ClCompile Include="Voiture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Moteur.h" />
     <ClInclude Include="Roue.h" />
     <ClInclude Include="Voiture.h" />
   </ItemGroup>

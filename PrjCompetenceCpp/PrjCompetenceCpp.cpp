@@ -7,7 +7,6 @@ using namespace std;
 /*
 * Déclaration de fonction 
 */
-
 void afficherVoiture(vector<Voiture>& voitures); // Affichage des voitures et de leurs roues
 
 int main()
@@ -31,6 +30,20 @@ int main()
 		cout << "Entrez la marque de la voiture : ";
 		cin >> marque;
 		tempVoiture.setMarque(marque);
+
+		// Moteur de la voiture
+		cout << "Entrez les informations du moteur de la voiture : " << endl;
+		cout << "Numero de serie : ";
+		cin >> inter_int;
+		tempVoiture.moteur.setNumero_serie(inter_int);
+		cout << "Model : ";
+		cin >> marque;
+		tempVoiture.moteur.setModel(marque);
+		cout << "Puissance : ";
+		cin >> tempVoiture.moteur.puissance;
+		cout << "Cylindree : ";
+		cin >> tempVoiture.moteur.cylindree;
+
 
 		// Roues de la voiture
 		for (int x = 0; x < 4; x++) {
@@ -73,7 +86,7 @@ int main()
 
 	} while (true);
 
-	
+	system("cls"); // Nettoyage de la console
 	afficherVoiture(voitures); // Affichage des voitures et de leurs roues
 	cin >> wait;
 
@@ -83,18 +96,23 @@ int main()
 void afficherVoiture(vector<Voiture>& voitures) {
 	for (int x = 0; x < voitures.size(); x++) {
 		cout << "Voiture numero " << x + 1 << " : " << endl;
-		cout << "Numero de serie : " << voitures[x].getNumero_serie() << endl;
-		cout << "Marque : " << voitures[x].getMarque() << endl;
+		cout << "\tNumero de serie : " << voitures[x].getNumero_serie() << endl;
+		cout << "\tMarque : " << voitures[x].getMarque() << endl;
+		cout << "Moteur : " << endl;
+		cout << "\tNumero de serie : " << voitures[x].moteur.getNumero_serie() << endl;
+		cout << "\tModel : " << voitures[x].moteur.getModel() << endl;
+		cout << "\tPuissance : " << voitures[x].moteur.puissance << endl;
+		cout << "\tCylindree : " << voitures[x].moteur.cylindree << endl;
 		for (int y = 0; y < voitures[x].roues.size(); y++) {
 			cout << "Roues numero " << y + 1 << " : " << endl;
-			cout << "Numero de serie : " << voitures[x].roues[y].getNumeruo_serie() << endl;
-			cout << "Marque : " << voitures[x].roues[y].getMarque() << endl;
-			cout << "Largeur : " << voitures[x].roues[y].largeur << endl;
-			cout << "Hauteur : " << voitures[x].roues[y].hauteur << endl;
-			cout << "Radial : " << voitures[x].roues[y].radial << endl;
-			cout << "Diametre : " << voitures[x].roues[y].diametre << endl;
-			cout << "Indice de charge : " << voitures[x].roues[y].indice_charge << endl;
-			cout << "Indice de vitesse : " << voitures[x].roues[y].indice_vitesse << endl;
+			cout << "\tNumero de serie : " << voitures[x].roues[y].getNumeruo_serie() << endl;
+			cout << "\tMarque : " << voitures[x].roues[y].getMarque() << endl;
+			cout << "\tLargeur : " << voitures[x].roues[y].largeur << endl;
+			cout << "\tHauteur : " << voitures[x].roues[y].hauteur << endl;
+			cout << "\tRadial : " << voitures[x].roues[y].radial << endl;
+			cout << "\tDiametre : " << voitures[x].roues[y].diametre << endl;
+			cout << "\tIndice de charge : " << voitures[x].roues[y].indice_charge << endl;
+			cout << "\tIndice de vitesse : " << voitures[x].roues[y].indice_vitesse << endl;
 		}
 
 	}
