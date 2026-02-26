@@ -21,9 +21,6 @@ int main()
 
 		int interInt;
 		string interString;
-		/*
-		* Verifier les entrer
-		*/
 
 		// Numero série voiture
 		cout << "Entrez le numero de serie de la voiture : ";
@@ -73,29 +70,74 @@ int main()
 
 
 		// Roues de la voiture
-		for (int x = 0; x < 4; x++) {
+		for (int x = 0; x < tempVoiture.roues.size(); x++) {
 			cout << "Entrez les informations des roues numero " << x + 1 << " de la voiture : " << endl;
 			cout << "Numero de serie : ";
 			cin >> interInt;
 			tempVoiture.roues[x].setNumeruo_serie(interInt);
+			
 			cout << "Marque : ";
 			cin >> interString;
 			tempVoiture.roues[x].setMarque(interString);
-			cout << "Largeur : ";
-			cin >> tempVoiture.roues[x].largeur;
-			cout << "Hauteur : ";
-			cin >> tempVoiture.roues[x].hauteur;
-			cout << "Radial : ";
-			cin >> tempVoiture.roues[x].radial;
+
+			// Largeur du pneu	
+			do {
+				cout << "Largeur : ";
+				cin >> interInt;
+				if (!(tempVoiture.verifierEntree(interInt))) {
+					cout << "Veuillez entrer une valeur supérieure à 0 pour la largeur de la roue." << endl;
+				}
+				else {
+					tempVoiture.roues[x].largeur = interInt;
+					break;
+				}
+			} while (true);
 			
+			// Hauteur du pneu
+			do {
+				cout << "Hauteur : ";
+				cin >> interInt;
+				if (!(tempVoiture.verifierEntree(interInt))) {
+					cout << "Veuillez entrer une valeur supérieure à 0 pour la hauteur de la roue." << endl;
+				}
+				else {
+					tempVoiture.roues[x].hauteur = interInt;
+					break;
+				}
+			} while (true); // Verifier si la largeur de la roue est supérieur à 0),
 			
-			tempVoiture.roues[x].calculDiametre(); // Calcul du diametre de la roue
+			// Radial du pneu
+			do {
+				cout << "Radial : ";
+				cin >> interInt;
+				if (!(tempVoiture.verifierEntree(interInt))) {
+					cout << "Veuillez entrer une valeur supérieure à 0 pour le radial de la roue." << endl;
+				}
+				else {
+					tempVoiture.roues[x].radial = interInt;
+					break;
+				}
+			} while (true); 
+			
+			// Calcul du diametre de la roue
+			tempVoiture.roues[x].calculDiametre(); 
 			cout << "Diametre : " << tempVoiture.roues[x].diametre << endl;
 
 			cout << "Indice de charge : ";
 			cin >> tempVoiture.roues[x].indiceCharge;
 			cout << "Indice de vitesse : ";
 			cin >> tempVoiture.roues[x].indiceVitesse;
+
+			if (x == 0) { // Lifechanger
+				cout << "Voulez-vous ajouter les mêmes informations pour les autres roues ? (O/N) : ";
+				cin >> interString;
+				if (interString == "O" || interString == "o") {
+					for (int y = 1; y < tempVoiture.roues.size(); y++) {
+						tempVoiture.roues[y] = tempVoiture.roues[0];
+					}
+					break;
+				}
+			}
 		}
 
 		try {
@@ -104,8 +146,8 @@ int main()
 		catch (const exception& e) {
 			cerr << "Erreur lors de l'ajout de la voiture : " << e.what() << std::endl;
 		} 
-		cout << "Nombre de voitures : " << voitures.size() << endl;
-		cout << "Nombre de roues : " << voitures[0].roues.size() << endl;
+		//cout << "Nombre de voitures : " << voitures.size() << endl;
+		//cout << "Nombre de roues : " << voitures[0].roues.size() << endl;
 		cout << "Voulez-vous ajouter une autre voiture ? (O/N) : ";
 		cin >> interString;
 		if (interString != "O" && interString != "o") {

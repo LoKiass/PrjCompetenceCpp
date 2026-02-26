@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
 #include "Roue.h"
+#include <iostream>
 #include "Moteur.h"
 #include <vector>
+
 using namespace std;
 
 class Voiture
@@ -20,10 +22,6 @@ private:
 		}
 	}
 public :
-	/*
-	* Verifier les entrées fournies par l'utilisateur
-	*/
-
 	Moteur moteur; // Une voiture a un moteur
 	vector<Roue> roues; // Une voiture peut avoir plusieurs roues (MAX/MIN 4)
 	Voiture() { // Informations de base pour une voiture, avec 4 roues de base
@@ -46,9 +44,9 @@ public :
 	*/
 	bool verifierEntree(int entree) { 
 		if (!(entree)) { // Verifier si l'entrée est alphanumérique (Autrement dit, verifie si le CIN à raté)
-			return false; 
 			cin.clear();
 			cin.ignore(10000, '\n');
+			return false; 
 		}
 		if (entree < 0) {
 			return false; 
