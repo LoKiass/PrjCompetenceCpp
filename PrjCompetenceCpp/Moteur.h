@@ -19,6 +19,11 @@ public:
 	/*
 	* Constructeur et deconstucteur
 	*/
+
+
+	/*
+	* Verifier les entrées fournies par l'utilisateur
+	*/
 	Moteur() {
 		this->cylindree = 0;
 		this->puissance = 0;

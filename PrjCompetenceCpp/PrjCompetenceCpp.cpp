@@ -1,6 +1,7 @@
+
 #include <iostream>
 #include "Voiture.h"
-#include "vector"
+#include <vector>
 
 using namespace std;
 
@@ -20,7 +21,10 @@ int main()
 
 		int interInt;
 		string interString;
-		
+		/*
+		* Verifier les entrer
+		*/
+
 		// Numero série voiture
 		cout << "Entrez le numero de serie de la voiture : ";
 		cin >> interInt;
@@ -39,10 +43,33 @@ int main()
 		cout << "Model : ";
 		cin >> interString;
 		tempVoiture.moteur.setModel(interString);
-		cout << "Puissance : ";
-		cin >> tempVoiture.moteur.puissance;
-		cout << "Cylindree : ";
-		cin >> tempVoiture.moteur.cylindree;
+
+		do { 
+			cout << "Puissance : ";
+			cin >> interInt;
+			if (!(tempVoiture.verifierEntree(interInt))) {
+				cout << "Veuillez entrer une valeur supérieure à 0 pour la puissance du moteur." << endl;
+			}
+			else {
+				tempVoiture.moteur.puissance = interInt;
+				break;
+			}
+			
+		} while (true); // Verifier si la puissance du moteur est supérieur à 0
+
+		do {
+			cout << "Cylindre : ";
+			cin >> interInt;
+			if (!(tempVoiture.verifierEntree(interInt))) {
+				cout << "Veuillez entrer une valeur supérieure à 0 pour la puissance du moteur." << endl;
+			}
+			else {
+				tempVoiture.moteur.cylindree = interInt;
+				break;
+			}
+
+		} while (true); // Verifier si la cylindrée du moteur est supérieur à 0
+		
 
 
 		// Roues de la voiture
@@ -61,6 +88,7 @@ int main()
 			cout << "Radial : ";
 			cin >> tempVoiture.roues[x].radial;
 			
+			
 			tempVoiture.roues[x].calculDiametre(); // Calcul du diametre de la roue
 			cout << "Diametre : " << tempVoiture.roues[x].diametre << endl;
 
@@ -74,7 +102,7 @@ int main()
 			voitures.push_back(tempVoiture);
 		}
 		catch (const exception& e) {
-			cerr << "Erreur lors de l'ajout de la voiture : " << e.what() << endl;
+			cerr << "Erreur lors de l'ajout de la voiture : " << e.what() << std::endl;
 		} 
 		cout << "Nombre de voitures : " << voitures.size() << endl;
 		cout << "Nombre de roues : " << voitures[0].roues.size() << endl;

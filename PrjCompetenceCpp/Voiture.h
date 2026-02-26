@@ -20,6 +20,10 @@ private:
 		}
 	}
 public :
+	/*
+	* Verifier les entrées fournies par l'utilisateur
+	*/
+
 	Moteur moteur; // Une voiture a un moteur
 	vector<Roue> roues; // Une voiture peut avoir plusieurs roues (MAX/MIN 4)
 	Voiture() { // Informations de base pour une voiture, avec 4 roues de base
@@ -35,6 +39,21 @@ public :
 	}
 	~Voiture() {
 
+	}
+
+	/*
+	* Méthode qui verifie si l'entrée est supérieur à 0 (obligatoire pour les numéros de série, puissance, cylindrée, etc.)
+	*/
+	bool verifierEntree(int entree) { 
+		if (!(entree)) { // Verifier si l'entrée est alphanumérique (Autrement dit, verifie si le CIN à raté)
+			return false; 
+			cin.clear();
+			cin.ignore(10000, '\n');
+		}
+		if (entree < 0) {
+			return false; 
+		}
+		return true; 
 	}
 
 	/*
