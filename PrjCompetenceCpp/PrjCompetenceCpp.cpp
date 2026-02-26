@@ -18,27 +18,27 @@ int main()
 	do {
 		Voiture tempVoiture;
 
-		int inter_int;
-		string marque;
+		int interInt;
+		string interString;
 		
 		// Numero série voiture
 		cout << "Entrez le numero de serie de la voiture : ";
-		cin >> inter_int;
-		tempVoiture.setNumero_serie(inter_int);
+		cin >> interInt;
+		tempVoiture.setNumero_serie(interInt);
 
 		// Marque voiture
 		cout << "Entrez la marque de la voiture : ";
-		cin >> marque;
-		tempVoiture.setMarque(marque);
+		cin >> interString;
+		tempVoiture.setMarque(interString);
 
 		// Moteur de la voiture
 		cout << "Entrez les informations du moteur de la voiture : " << endl;
 		cout << "Numero de serie : ";
-		cin >> inter_int;
-		tempVoiture.moteur.setNumero_serie(inter_int);
+		cin >> interInt;
+		tempVoiture.moteur.setNumero_serie(interInt);
 		cout << "Model : ";
-		cin >> marque;
-		tempVoiture.moteur.setModel(marque);
+		cin >> interString;
+		tempVoiture.moteur.setModel(interString);
 		cout << "Puissance : ";
 		cin >> tempVoiture.moteur.puissance;
 		cout << "Cylindree : ";
@@ -49,11 +49,11 @@ int main()
 		for (int x = 0; x < 4; x++) {
 			cout << "Entrez les informations des roues numero " << x + 1 << " de la voiture : " << endl;
 			cout << "Numero de serie : ";
-			cin >> inter_int;
-			tempVoiture.roues[x].setNumeruo_serie(inter_int);
+			cin >> interInt;
+			tempVoiture.roues[x].setNumeruo_serie(interInt);
 			cout << "Marque : ";
-			cin >> marque;
-			tempVoiture.roues[x].setMarque(marque);
+			cin >> interString;
+			tempVoiture.roues[x].setMarque(interString);
 			cout << "Largeur : ";
 			cin >> tempVoiture.roues[x].largeur;
 			cout << "Hauteur : ";
@@ -65,9 +65,9 @@ int main()
 			cout << "Diametre : " << tempVoiture.roues[x].diametre << endl;
 
 			cout << "Indice de charge : ";
-			cin >> tempVoiture.roues[x].indice_charge;
+			cin >> tempVoiture.roues[x].indiceCharge;
 			cout << "Indice de vitesse : ";
-			cin >> tempVoiture.roues[x].indice_vitesse;
+			cin >> tempVoiture.roues[x].indiceVitesse;
 		}
 
 		try {
@@ -79,8 +79,8 @@ int main()
 		cout << "Nombre de voitures : " << voitures.size() << endl;
 		cout << "Nombre de roues : " << voitures[0].roues.size() << endl;
 		cout << "Voulez-vous ajouter une autre voiture ? (O/N) : ";
-		cin >> marque;
-		if (marque != "O" && marque != "o") {
+		cin >> interString;
+		if (interString != "O" && interString != "o") {
 			break;
 		}
 
@@ -92,7 +92,9 @@ int main()
 
 	return 0;
 }
-
+/*
+* Cette fonction permet d'afficher les informations des voitures et de leurs roues.
+*/
 void afficherVoiture(vector<Voiture>& voitures) {
 	for (int x = 0; x < voitures.size(); x++) {
 		cout << "Voiture numero " << x + 1 << " : " << endl;
@@ -111,8 +113,8 @@ void afficherVoiture(vector<Voiture>& voitures) {
 			cout << "\tHauteur : " << voitures[x].roues[y].hauteur << endl;
 			cout << "\tRadial : " << voitures[x].roues[y].radial << endl;
 			cout << "\tDiametre : " << voitures[x].roues[y].diametre << endl;
-			cout << "\tIndice de charge : " << voitures[x].roues[y].indice_charge << endl;
-			cout << "\tIndice de vitesse : " << voitures[x].roues[y].indice_vitesse << endl;
+			cout << "\tIndice de charge : " << voitures[x].roues[y].indiceCharge << endl;
+			cout << "\tIndice de vitesse : " << voitures[x].roues[y].indiceVitesse << endl;
 		}
 
 	}

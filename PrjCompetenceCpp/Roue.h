@@ -10,7 +10,7 @@ using namespace std;
 class Roue
 {
 private:
-	int numeruo_serie;
+	int numeroSerie;
 	string marque;
 public : 
 	/*
@@ -20,8 +20,8 @@ public :
 	int hauteur;
 	int radial;
 	int diametre;
-	int indice_charge;
-	int indice_vitesse;
+	int indiceCharge;
+	int indiceVitesse;
 
 	/*
 	* Constructeur et destructeur
@@ -31,10 +31,10 @@ public :
 		this->hauteur = 0;
 		this->radial = 0;
 		this->diametre = 0;
-		this->indice_charge = 0;
-		this->indice_vitesse = 0;
+		this->indiceCharge = 0;
+		this->indiceVitesse = 0;
 		this->marque = "";
-		this->numeruo_serie = 0;
+		this->numeroSerie = 0;
 	}
 	~Roue() {
 
@@ -50,13 +50,13 @@ public :
 	* Getter et setter
 	*/
 	void setNumeruo_serie(int numeruo_serie) {
-		this->numeruo_serie = numeruo_serie;
+		this->numeroSerie = numeruo_serie;
 	}
 	void setMarque(string marque) {
 		this->marque = marque;
 	}
 	int getNumeruo_serie() {
-		return this->numeruo_serie;
+		return this->numeroSerie;
 	}
 	string getMarque() {
 		return this->marque;

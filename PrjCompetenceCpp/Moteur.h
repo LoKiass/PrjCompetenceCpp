@@ -10,7 +10,7 @@ using namespace std;
 class Moteur
 {
 private:
-	int numero_serie;
+	int numeroSerie;
 	string model;
 public:
 	int puissance; // Puissance du moteur en chevaux
@@ -22,13 +22,13 @@ public:
 	Moteur() {
 		this->cylindree = 0;
 		this->puissance = 0;
-		this->numero_serie = 0;
+		this->numeroSerie = 0;
 		this->model = "";
 	}
 	Moteur(const Moteur& moteur) {
 		this->cylindree = moteur.cylindree;
 		this->puissance = moteur.puissance;
-		this->numero_serie = moteur.numero_serie;
+		this->numeroSerie = moteur.numeroSerie;
 		this->model = moteur.model;
 	}
 	~Moteur() {
@@ -38,13 +38,13 @@ public:
 	* Setter et getter
 	*/
 	void setNumero_serie(int numero_serie) {
-		this->numero_serie = numero_serie;
+		this->numeroSerie = numero_serie;
 	}
 	void setModel(string model) {
 		this->model = model;
 	}
 	int getNumero_serie() {
-		return this->numero_serie;
+		return this->numeroSerie;
 	}
 	string getModel() {
 		return this->model;
