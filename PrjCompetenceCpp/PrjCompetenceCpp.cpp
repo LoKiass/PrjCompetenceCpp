@@ -100,36 +100,36 @@ void afficherCamions(vector<Camion*> camions) {
 /*
 * Cette fonction permet de saisir les informations d'une voiture et de ses roues.
 */
-void saisirInformationVoiture(Voiture& tempCamion) {
+void saisirInformationVoiture(Voiture& tempVoiture) {
 	int interInt;
 	string interString;
 	do {
 		// Numero série voiture
 		cout << "Entrez le numero de serie de la voiture : ";
 		cin >> interInt;
-		tempCamion.setNumero_serie(interInt);
+		tempVoiture.setNumero_serie(interInt);
 
 		// Marque voiture
 		cout << "Entrez la marque de la voiture : ";
 		cin >> interString;
-		tempCamion.setMarque(interString);
+		tempVoiture.setMarque(interString);
 
 		// Moteur de la voiture
 		cout << "Entrez les informations du moteur de la voiture : " << endl;
 		cout << "Numero de serie : ";
 		cin >> interInt;
-		tempCamion.moteur.setNumero_serie(interInt);
+		tempVoiture.moteur.setNumero_serie(interInt);
 		cout << "Model : ";
 		cin >> interString;
-		tempCamion.moteur.setModel(interString);
+		tempVoiture.moteur.setModel(interString);
 
 		cout << "Puissance : ";
 		cin >> interInt;
-		if (!(tempCamion.verifierEntree(interInt))) {
+		if (!(tempVoiture.verifierEntree(interInt))) {
 			cout << "Veuillez entrer une valeur supérieure à 0 pour la puissance du moteur." << endl;
 		}
 		else {
-			tempCamion.moteur.puissance = interInt;
+			tempVoiture.moteur.puissance = interInt;
 			break;
 		}
 
@@ -138,11 +138,11 @@ void saisirInformationVoiture(Voiture& tempCamion) {
 	do {
 		cout << "Cylindre : ";
 		cin >> interInt;
-		if (!(tempCamion.verifierEntree(interInt))) {
+		if (!(tempVoiture.verifierEntree(interInt))) {
 			cout << "Veuillez entrer une valeur supérieure à 0 pour la puissance du moteur." << endl;
 		}
 		else {
-			tempCamion.moteur.cylindree = interInt;
+			tempVoiture.moteur.cylindree = interInt;
 			break;
 		}
 
@@ -151,25 +151,25 @@ void saisirInformationVoiture(Voiture& tempCamion) {
 
 
 	// Roues de la voiture
-	for (int x = 0; x < tempCamion.roues.size(); x++) {
+	for (int x = 0; x < tempVoiture.roues.size(); x++) {
 		cout << "Entrez les informations des roues numero " << x + 1 << " de la voiture : " << endl;
 		cout << "Numero de serie : ";
 		cin >> interInt;
-		tempCamion.roues[x].setNumeruo_serie(interInt);
+		tempVoiture.roues[x].setNumeruo_serie(interInt);
 
 		cout << "Marque : ";
 		cin >> interString;
-		tempCamion.roues[x].setMarque(interString);
+		tempVoiture.roues[x].setMarque(interString);
 
 		// Largeur du pneu	
 		do {
 			cout << "Largeur : ";
 			cin >> interInt;
-			if (!(tempCamion.verifierEntree(interInt))) {
+			if (!(tempVoiture.verifierEntree(interInt))) {
 				cout << "Veuillez entrer une valeur supérieure à 0 pour la largeur de la roue." << endl;
 			}
 			else {
-				tempCamion.roues[x].largeur = interInt;
+				tempVoiture.roues[x].largeur = interInt;
 				break;
 			}
 		} while (true);
@@ -178,11 +178,11 @@ void saisirInformationVoiture(Voiture& tempCamion) {
 		do {
 			cout << "Hauteur : ";
 			cin >> interInt;
-			if (!(tempCamion.verifierEntree(interInt))) {
+			if (!(tempVoiture.verifierEntree(interInt))) {
 				cout << "Veuillez entrer une valeur supérieure à 0 pour la hauteur de la roue." << endl;
 			}
 			else {
-				tempCamion.roues[x].hauteur = interInt;
+				tempVoiture.roues[x].hauteur = interInt;
 				break;
 			}
 		} while (true); // Verifier si la largeur de la roue est supérieur à 0),
@@ -191,30 +191,30 @@ void saisirInformationVoiture(Voiture& tempCamion) {
 		do {
 			cout << "Radial : ";
 			cin >> interInt;
-			if (!(tempCamion.verifierEntree(interInt))) {
+			if (!(tempVoiture.verifierEntree(interInt))) {
 				cout << "Veuillez entrer une valeur supérieure à 0 pour le radial de la roue." << endl;
 			}
 			else {
-				tempCamion.roues[x].radial = interInt;
+				tempVoiture.roues[x].radial = interInt;
 				break;
 			}
 		} while (true);
 
 		// Calcul du diametre de la roue
-		tempCamion.roues[x].calculDiametre();
-		cout << "Diametre : " << tempCamion.roues[x].diametre << endl;
+		tempVoiture.roues[x].calculDiametre();
+		cout << "Diametre : " << tempVoiture.roues[x].diametre << endl;
 
 		cout << "Indice de charge : ";
-		cin >> tempCamion.roues[x].indiceCharge;
+		cin >> tempVoiture.roues[x].indiceCharge;
 		cout << "Indice de vitesse : ";
-		cin >> tempCamion.roues[x].indiceVitesse;
+		cin >> tempVoiture.roues[x].indiceVitesse;
 
 		if (x == 0) { // Lifechanger
 			cout << "Voulez-vous ajouter les mêmes informations pour les autres roues ? (O/N) : ";
 			cin >> interString;
 			if (interString == "O" || interString == "o") {
-				for (int y = 1; y < tempCamion.roues.size(); y++) {
-					tempCamion.roues[y] = tempCamion.roues[0];
+				for (int y = 1; y < tempVoiture.roues.size(); y++) {
+					tempVoiture.roues[y] = tempVoiture.roues[0];
 				}
 				break;
 			}

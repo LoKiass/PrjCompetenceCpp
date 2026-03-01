@@ -132,12 +132,14 @@
     <ClCompile Include="PrjCompetenceCpp.cpp" />
     <ClCompile Include="Roue.cpp" />
     <ClCompile Include="Voiture.cpp" />
+    <ClCompile Include="VoitureElec.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camion.h" />
     <ClInclude Include="Moteur.h" />
     <ClInclude Include="Roue.h" />
     <ClInclude Include="Voiture.h" />
+    <ClInclude Include="VoitureElec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
