@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "Voiture.h"
+#include "Camion.h"
 #include <vector>
 
 using namespace std;
@@ -12,6 +13,9 @@ void afficherVoiture(vector<Voiture *> voitures); // Affichage des voitures et d
 
 int main()
 {
+	// vector<Camion*> camions;
+	Camion *pCamion = new Camion();
+
 	vector<Voiture *> voitures; 
 	string wait;
 
