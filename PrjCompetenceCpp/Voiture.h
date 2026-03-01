@@ -35,6 +35,12 @@ public :
 		this->moteur = voiture.moteur;
 		this->roues = voiture.roues;
 	}
+	Voiture(Voiture* pVoiture) {
+		this->numeroSerie = pVoiture->numeroSerie;
+		this->marque = pVoiture->marque;
+		this->moteur = pVoiture->moteur; 
+		this->roues = pVoiture->roues;
+	}
 	~Voiture() {
 
 	}
