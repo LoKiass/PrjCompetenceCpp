@@ -7,15 +7,16 @@
 using namespace std;
 
 /*
-* Déclaration de fonction 
+* Déclaration de fonction
 */
-void afficherCamions(vector<Camion *> Camions); // Affichage des voitures et de leurs roues
+void afficherCamions(vector<Camion*> Camions); // Affichage des voitures et de leurs roues
 void saisirInformationVoiture(Voiture& tempVoiture); // Saisie des informations de la voiture et de ses roues
 
 int main()
 {
 	vector<Camion*> camions;
 	string interString;
+	int interInt;
 	// vector<Voiture *> voitures; // Sera ajouter lors des notions de polymorphisme
 	string wait;
 	do {
@@ -25,19 +26,29 @@ int main()
 			if (interString == "c" || interString == "C") {
 				Camion* tempCamion = new Camion();
 				saisirInformationVoiture(*tempCamion);
+
+				do {
+					cout << "Capacité de charge ";
+					cin >> interInt;
+					if (!(tempCamion->verifierEntree(interInt))) {
+						cout << "Veuillez entrer une valeur supérieure à 0 pour la capacité de charge du camion." << endl;
+					}
+					else {
+						tempCamion->setCapaciteCharge(interInt);
+						break;
+					}
+				} while (true); // Verifier si la capacité de charge du camion est supérieur à 0),
+				
 				camions.push_back(tempCamion);
+				tempCamion = nullptr;  // Nettoyage mémoire temporaire
 				break;
 			}
 			else {
 				cout << "Veuillez entrer V pour voiture ou C pour camion." << endl;
 				break;
 			}
-		} while (true);		
-		
+		} while (true);
 
-
-		//cout << "Nombre de voitures : " << voitures.size() << endl;
-		//cout << "Nombre de roues : " << voitures[0].roues.size() << endl;
 		cout << "Voulez-vous ajouter une autre voiture ? (O/N) : ";
 		cin >> interString;
 		if (interString != "O" && interString != "o") {
@@ -61,7 +72,7 @@ int main()
 /*
 * Cette fonction permet d'afficher les informations des voitures et de leurs roues.
 */
-void afficherCamions(vector<Camion *> camions) {
+void afficherCamions(vector<Camion*> camions) {
 	for (int x = 0; x < camions.size(); x++) {
 		cout << "Voiture numero " << x + 1 << " : " << endl;
 		cout << "\tNumero de serie : " << camions[x]->getNumero_serie() << endl;
@@ -82,10 +93,13 @@ void afficherCamions(vector<Camion *> camions) {
 			cout << "\tIndice de charge : " << camions[x]->roues[y].indiceCharge << endl;
 			cout << "\tIndice de vitesse : " << camions[x]->roues[y].indiceVitesse << endl;
 		}
+		cout << "\tCapacité de charge : " << camions[x]->getCapaciteCharge() << " tonnes" << endl;
 
 	}
 }
-
+/*
+* Cette fonction permet de saisir les informations d'une voiture et de ses roues.
+*/
 void saisirInformationVoiture(Voiture& tempCamion) {
 	int interInt;
 	string interString;
