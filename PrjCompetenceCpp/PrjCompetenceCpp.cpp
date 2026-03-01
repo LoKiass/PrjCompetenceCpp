@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "VoitureElec.h"
 #include "Camion.h"
