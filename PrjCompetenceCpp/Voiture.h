@@ -41,8 +41,8 @@ public :
 		this->moteur = pVoiture->moteur; 
 		this->roues = pVoiture->roues;
 	}
-	~Voiture() {
-
+	virtual ~Voiture() {
+		
 	}
 
 	/*

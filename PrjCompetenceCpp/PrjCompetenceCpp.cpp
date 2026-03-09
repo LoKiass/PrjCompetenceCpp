@@ -81,6 +81,11 @@ int main()
 	if (voitures.size() > 0) {
 		afficherVoitures(voitures);
 	}
+
+	for (int x = 0; x < voitures.size(); x++) { // Nettoyage mémoire des voitures
+		delete voitures[x];
+	}
+
 	cin >> wait;
 
 	return 0;

@@ -12,6 +12,10 @@ public :
 	VoitureElec(VoitureElec *pVoitureElec) : Voiture(pVoitureElec) {
 		this->autonomie = pVoitureElec->autonomie;
 	}
+	virtual ~VoitureElec() {
+	
+	}
+
 	/*
 	 * Setter et getter
 	 */

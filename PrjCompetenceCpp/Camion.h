@@ -11,6 +11,8 @@ public :
     Camion(Camion *pCamion) : Voiture(pCamion) {
         this->capaciteCharge = pCamion->capaciteCharge;
 	}
+    virtual ~Camion() {
+	}
     /*
     * Setter et getter
     */
