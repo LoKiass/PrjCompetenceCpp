@@ -8,58 +8,58 @@ using namespace std;
 /*
 * Déclaration de fonction
 */
-void afficherCamions(vector<Camion*> Camions); // Affichage des voitures et de leurs roues
-void afficherVoituresElec(vector<VoitureElec*> voituresElec); // Affichage des voitures électriques et de leurs roues
 void saisirInformationVoiture(Voiture& tempVoiture, bool isElec); // Saisie des informations de la voiture et de ses roues
+void afficherVoitures(vector<Voiture*> voitures); // Affichage des voitures et de leurs roues
 
 int main()
 {
-	vector<Camion*> camions;
-	vector<VoitureElec*> voituresElec;
+	vector <Voiture*> voitures; 
+	Voiture* tempVoiture = nullptr;
+
 	string interString;
 	int interInt;
-	// vector<Voiture *> voitures; // Sera ajouter lors des notions de polymorphisme
+
 	string wait;
 	do {
 		do {
 			cout << "Voulez vous ajouter une voiture electrique ou un camion ? (V/C) : ";
 			cin >> interString;
 			if (interString == "c" || interString == "C") {
-				Camion* tempCamion = new Camion();
-				saisirInformationVoiture(*tempCamion, false);
+				tempVoiture = new Camion();
+				saisirInformationVoiture(*tempVoiture, false);
 
 				do {
 					cout << "Capacité de charge ";
 					cin >> interInt;
-					if (!(tempCamion->verifierEntree(interInt))) {
+					if (!(tempVoiture->verifierEntree(interInt))) {
 						cout << "Veuillez entrer une valeur supérieure à 0 pour la capacité de charge du camion." << endl;
 					}
 					else {
-						tempCamion->setCapaciteCharge(interInt);
+						tempVoiture->setCapacitePoly(interInt);
 						break;
 					}
 				} while (true); // Verifier si la capacité de charge du camion est supérieur à 0),
 				
-				camions.push_back(tempCamion);
-				tempCamion = nullptr;  // Nettoyage mémoire temporaire
+				voitures.push_back(tempVoiture);
+				tempVoiture = nullptr;  // Nettoyage mémoire temporaire
 				break;
 			}
 			else if (interString == "v" || interString == "V") {
-				VoitureElec* tempVoitureElec = new VoitureElec();
-				saisirInformationVoiture(*tempVoitureElec, true);
+				tempVoiture = new VoitureElec();
+				saisirInformationVoiture(*tempVoiture, true);
 				do {
 					cout << "Autonomie : ";
 					cin >> interInt;
-					if (!(tempVoitureElec->verifierEntree(interInt))) {
+					if (!(tempVoiture->verifierEntree(interInt))) {
 						cout << "Veuillez entrer une valeur supérieure à 0 pour l'autonomie de la voiture électrique." << endl;
 					}
 					else {
-						tempVoitureElec->setAutonomie(interInt);
+						tempVoiture->setAutonomiePoly(interInt);
 						break;
 					}
 				} while (true); // Verifier si l'autonomie de la voiture électrique est supérieur à 0),
-				voituresElec.push_back(tempVoitureElec);
-				tempVoitureElec = nullptr; // Nettoyage mémoire temporaire
+				voitures.push_back(tempVoiture);
+				tempVoiture = nullptr; // Nettoyage mémoire temporaire
 				break;
 			}
 			else {
@@ -78,77 +78,14 @@ int main()
 
 	system("cls"); // Nettoyage de la console
 	
-	if (camions.size() > 0) {
-		afficherCamions(camions); // Affichage des voitures et de leurs roues
-		for (int x = 0; x < camions.size(); x++) {
-			delete camions[x]; // Libération de la mémoire allouée pour les voitures
-		}
+	if (voitures.size() > 0) {
+		afficherVoitures(voitures);
 	}
-	if (voituresElec.size() > 0) {
-		afficherVoituresElec(voituresElec);
-		for (int x = 0; x < voituresElec.size(); x++) {
-			delete voituresElec[x]; // Libération de la mémoire allouée pour les voitures électriques
-		}
-	}
-	camions.clear(); // Nettoyage du vecteur de voitures
 	cin >> wait;
 
 	return 0;
 }
-/*
-* Cette fonction permet d'afficher toute les voitures électriques et leurs roues, ainsi que les informations de leurs moteurs.
-*/
-void afficherVoituresElec(vector<VoitureElec*> voituresElec) {
-	for (int x = 0; x < voituresElec.size(); x++) {
-		cout << "Voiture electrique numero " << x + 1 << " : " << endl;
-		cout << "\tNumero de serie : " << voituresElec[x]->getNumero_serie() << endl;
-		cout << "\tMarque : " << voituresElec[x]->getMarque() << endl;
-		cout << "Moteur : " << endl;
-		cout << "\tNumero de serie : " << voituresElec[x]->moteur.getNumero_serie() << endl;
-		cout << "\tModel : " << voituresElec[x]->moteur.getModel() << endl;
-		cout << "\tPuissance : " << voituresElec[x]->moteur.puissance << endl;
-		for (int y = 0; y < voituresElec[x]->roues.size(); y++) {
-			cout << "Roues numero " << y + 1 << " : " << endl;
-			cout << "\tNumero de serie : " << voituresElec[x]->roues[y].getNumeruo_serie() << endl;
-			cout << "\tMarque : " << voituresElec[x]->roues[y].getMarque() << endl;
-			cout << "\tLargeur : " << voituresElec[x]->roues[y].largeur << endl;
-			cout << "\tHauteur : " << voituresElec[x]->roues[y].hauteur << endl;
-			cout << "\tRadial : " << voituresElec[x]->roues[y].radial << endl;
-			cout << "\tDiametre : " << voituresElec[x]->roues[y].diametre << endl;
-			cout << "\tIndice de charge : " << voituresElec[x]->roues[y].indiceCharge << endl;
-			cout << "\tIndice de vitesse : " << voituresElec[x]->roues[y].indiceVitesse << endl;
-		}
-		cout << "\tAutonomie : " << voituresElec[x]->getAutonomie() <<" km"  << endl;
-	}
-}
-/*
-* Cette fonction permet d'afficher les informations des voitures et de leurs roues.
-*/
-void afficherCamions(vector<Camion*> camions) {
-	for (int x = 0; x < camions.size(); x++) {
-		cout << "Voiture numero " << x + 1 << " : " << endl;
-		cout << "\tNumero de serie : " << camions[x]->getNumero_serie() << endl;
-		cout << "\tMarque : " << camions[x]->getMarque() << endl;
-		cout << "Moteur : " << endl;
-		cout << "\tNumero de serie : " << camions[x]->moteur.getNumero_serie() << endl;
-		cout << "\tModel : " << camions[x]->moteur.getModel() << endl;
-		cout << "\tPuissance : " << camions[x]->moteur.puissance << endl;
-		cout << "\tCylindree : " << camions[x]->moteur.cylindree << endl;
-		for (int y = 0; y < camions[x]->roues.size(); y++) {
-			cout << "Roues numero " << y + 1 << " : " << endl;
-			cout << "\tNumero de serie : " << camions[x]->roues[y].getNumeruo_serie() << endl;
-			cout << "\tMarque : " << camions[x]->roues[y].getMarque() << endl;
-			cout << "\tLargeur : " << camions[x]->roues[y].largeur << endl;
-			cout << "\tHauteur : " << camions[x]->roues[y].hauteur << endl;
-			cout << "\tRadial : " << camions[x]->roues[y].radial << endl;
-			cout << "\tDiametre : " << camions[x]->roues[y].diametre << endl;
-			cout << "\tIndice de charge : " << camions[x]->roues[y].indiceCharge << endl;
-			cout << "\tIndice de vitesse : " << camions[x]->roues[y].indiceVitesse << endl;
-		}
-		cout << "\tCapacité de charge : " << camions[x]->getCapaciteCharge() << " tonnes" << endl;
 
-	}
-}
 /*
 * Cette fonction permet de saisir les informations d'une voiture et de ses roues.
 */
@@ -271,6 +208,29 @@ void saisirInformationVoiture(Voiture& tempVoiture, bool isElec) {
 				}
 				break;
 			}
+		}
+	}
+}
+void afficherVoitures(vector<Voiture*> voitures) {
+	for (int x = 0; x < voitures.size(); x++) {
+		cout << "Voiture numero " << x + 1 << " : " << endl;
+		cout << "\tNumero de serie : " << voitures[x]->getNumero_serie() << endl;
+		cout << "\tMarque : " << voitures[x]->getMarque() << endl;
+		cout << "Moteur : " << endl;
+		cout << "\tNumero de serie : " << voitures[x]->moteur.getNumero_serie() << endl;
+		cout << "\tModel : " << voitures[x]->moteur.getModel() << endl;
+		cout << "\tPuissance : " << voitures[x]->moteur.puissance << endl;
+		cout << "\tCylindree : " << voitures[x]->moteur.cylindree << endl;
+		for (int y = 0; y < voitures[x]->roues.size(); y++) {
+			cout << "Roues numero " << y + 1 << " : " << endl;
+			cout << "\tNumero de serie : " << voitures[x]->roues[y].getNumeruo_serie() << endl;
+			cout << "\tMarque : " << voitures[x]->roues[y].getMarque() << endl;
+			cout << "\tLargeur : " << voitures[x]->roues[y].largeur << endl;
+			cout << "\tHauteur : " << voitures[x]->roues[y].hauteur << endl;
+			cout << "\tRadial : " << voitures[x]->roues[y].radial << endl;
+			cout << "\tDiametre : " << voitures[x]->roues[y].diametre << endl;
+			cout << "\tIndice de charge : " << voitures[x]->roues[y].indiceCharge << endl;
+			cout << "\tIndice de vitesse : " << voitures[x]->roues[y].indiceVitesse << endl;
 		}
 	}
 }

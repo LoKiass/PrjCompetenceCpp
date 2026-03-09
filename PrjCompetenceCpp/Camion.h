@@ -20,6 +20,9 @@ public :
     void setCapaciteCharge(int capaciteCharge) {
         this->capaciteCharge = capaciteCharge;
 	}
+    virtual void setCapacitePoly(int capaciteCharge) {
+		this->setCapaciteCharge(capaciteCharge);
+	}
 private : 
 	int capaciteCharge; // Capacité de charge du camion en tonnes
 };

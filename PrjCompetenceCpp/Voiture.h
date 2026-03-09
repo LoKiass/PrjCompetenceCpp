@@ -75,4 +75,14 @@ public :
 	string getMarque() {
 		return this->marque;
 	}
+
+	/*
+	* Méthode polymorphique pour les voitures électriques, qui vas permettre de calculer l'autonomie de la voiture électrique en fonction de sa puissance et de sa cylindrée
+	*/
+	virtual void setAutonomiePoly(int autonomie) {
+		// Cette méthode vas être redéfinie dans la classe VoitureElec, elle ne fait rien dans la classe Voiture
+	}
+	virtual void setCapacitePoly(int capaciteCharge) {
+		// Cette méthode vas être redéfinie dans la classe Camion, elle ne fait rien dans la classe Voiture
+	}
 };

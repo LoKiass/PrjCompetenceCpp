@@ -21,6 +21,9 @@ public :
 	void setAutonomie(int autonomie) {
 		this->autonomie = autonomie;
 	}
+	virtual void setAutonomiePoly(int autonomie) {
+		this->setAutonomie(autonomie);
+	}
 private:
 	int autonomie; // Autonomie de la voiture électrique en kilomètres
 };
